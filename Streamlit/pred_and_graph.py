@@ -43,7 +43,7 @@ x=range(0,13,1)
 
 fig.suptitle('Patient predicted trajectory',x=0.5, y=0.93)
 
-fig, ax1, ax2,ax3,ax4 = plt.subplots(1,sharex=True)
+fig, ax1= plt.subplots(1,sharex=True)
 
 fig.set_figheight(10)
 fig.set_figwidth(10)
