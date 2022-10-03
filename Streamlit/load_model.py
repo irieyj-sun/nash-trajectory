@@ -5,6 +5,8 @@ import numpy as np
 from class_DeepHit import Model_DeepHit
 from tf_slim import fully_connected as FC_Net
 
+tf.compat.v1.disable_eager_execution()
+
 def load_logging(filename):
     data = dict()
     with open(filename) as f:
