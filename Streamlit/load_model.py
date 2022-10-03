@@ -68,9 +68,9 @@ beta                        = in_parser['beta']  #for ranking loss
 
 # Create the dictionaries 
 # For the input settings
-input_dims                  = { 'x_dim'         : x_dim,
-                                'num_Event'     : num_Event,
-                                'num_Category'  : num_Category}
+input_dims                  = { 'x_dim'         : 96,
+                                'num_Event'     : 2,
+                                'num_Category'  : 143}
 
 # For the hyperparameters
 network_settings            = { 'h_dim_shared'         : h_dim_shared,
