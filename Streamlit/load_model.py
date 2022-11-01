@@ -86,10 +86,24 @@ tf.compat.v1.reset_default_graph()
 
 imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
 
-with tf.compat.v1.Session() as sess:
+#with tf.compat.v1.Session() as sess:
     # restore the saved vairable
     
-    imported_graph.restore(sess,'models/checkpoint')
+#    imported_graph.restore(sess,'models/checkpoint')
     
-    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
+#    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
 
+tf.compat.v1.reset_default_graph()
+
+config = tf.compat.v1.ConfigProto
+
+sess = tf.compat.v1.Session()
+
+model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
+
+saver = tf.compat.v1.train.Saver()
+
+sess.run(tf.compat.v1.global_variables_initializer())
+
+# Restoring the trained model
+saver.restore(sess, 'model/model_itr_0')
