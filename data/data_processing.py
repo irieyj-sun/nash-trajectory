@@ -300,6 +300,6 @@ longi_features['CANHX_ALBUMIN']=longi_features['CANHX_ALBUMIN']*10
 
 ##combine variables and save
 df= pd.merge(static_features, longi_features,on="PX_ID", how = "left")
-df.to_csv('processed_data', index=False)
+df.to_csv('processed_data.csv', index=False)
 
 print('Complete')
