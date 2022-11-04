@@ -116,7 +116,7 @@ saver.restore(sess, 'model/model_itr_0')
 ##########################################
 # import data and predict
 
-processed_data = pd.read_csv('path/processed_data')
+processed_data = pd.read_csv('data/processed_data')
 
 get_x = lambda df: (df
                     .drop(columns=["event","wl_to_event"])
