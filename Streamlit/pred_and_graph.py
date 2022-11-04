@@ -1,31 +1,11 @@
 import pandas as pd
 import numpy as np
-from import_data import f_get_Normalization
 
-#convert and predict 
-processed_data = pd.read_csv('path/processed_data')
+import matplotlib.plt as plt
 
-get_x = lambda df: (df
-                    .drop(columns=["event","wl_to_event"])
-                    .values.astype('float32'))
+#import prediction data
+prerisk = pd.read_csv('prerisk.csv',index_col = 0)
 
-data = np.asarray(get_x(processed_data))
-
-data = f_get_Normalization(data, 'standard')
-
-#prediction and convert to dataframe
-pred = model.predict(data)
-
-pred = pd.
-pred =pred[:,:,:]
-
-m,n,r = pred.shape
-out_arr = np.column_stack((np.repeat(np.arange(m),n),pred.reshape(m*n,-1)))
-out_df = pd.DataFrame(out_arr)
-
-predrisk = predrisk.iloc[: , 1:]
-
-################################################
 #graph
 patient1 = pd.DataFrame({
    'transplant': predrisk.iloc[1][0:13],
