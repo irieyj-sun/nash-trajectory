@@ -4,6 +4,10 @@ import numpy as np
 
 from class_DeepHit import Model_DeepHit
 from tf_slim import fully_connected as FC_Net
+from import_data import f_get_Normalization
+
+####################################
+# Load model 
 
 tf.compat.v1.disable_eager_execution()
 
@@ -107,3 +111,28 @@ sess.run(tf.compat.v1.global_variables_initializer())
 
 # Restoring the trained model
 saver.restore(sess, 'model/model_itr_0')
+
+
+##########################################
+# import data and predict
+
+processed_data = pd.read_csv('path/processed_data')
+
+get_x = lambda df: (df
+                    .drop(columns=["event","wl_to_event"])
+                    .values.astype('float32'))
+
+data = np.asarray(get_x(processed_data))
+
+data = f_get_Normalization(data, 'standard')
+
+#prediction and convert to dataframe
+pred = model.predict(data)
+
+m,n,r = pred.shape
+out_arr = np.column_stack((np.repeat(np.arange(m),n),pred.reshape(m*n,-1)))
+out_df = pd.DataFrame(out_arr)
+
+predrisk = predrisk.iloc[: , 1:]
+
+predrisk.to_csv('predrisk.csv')
