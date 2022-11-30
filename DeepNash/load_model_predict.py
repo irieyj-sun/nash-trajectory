@@ -88,7 +88,7 @@ network_settings            = { 'h_dim_shared'         : h_dim_shared,
 
 tf.compat.v1.reset_default_graph()
 
-imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
+#imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
 
 #with tf.compat.v1.Session() as sess:
     # restore the saved vairable
@@ -110,7 +110,7 @@ saver = tf.compat.v1.train.Saver()
 sess.run(tf.compat.v1.global_variables_initializer())
 
 # Restoring the trained model
-saver.restore(sess, 'model/model_itr_0')
+saver.restore(sess, 'model/model/model_itr_0')
 
 
 ##########################################
