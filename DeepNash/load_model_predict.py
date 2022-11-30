@@ -116,10 +116,10 @@ saver.restore(sess, 'model/model_itr_0')
 ##########################################
 # import data and predict
 
-processed_data = pd.read_csv('data/processed_data')
+processed_data = pd.read_csv('data/NASH_test_df.csv', index_col=0)
 
 get_x = lambda df: (df
-                    .drop(columns=["event","wl_to_event"])
+                    .drop(columns=["event","wl_to_event","PX_ID"])
                     .values.astype('float32'))
 
 data = np.asarray(get_x(processed_data))
@@ -133,6 +133,6 @@ m,n,r = pred.shape
 out_arr = np.column_stack((np.repeat(np.arange(m),n),pred.reshape(m*n,-1)))
 out_df = pd.DataFrame(out_arr)
 
-predrisk = predrisk.iloc[: , 1:]
+predrisk = pred.iloc[: , 1:]
 
 predrisk.to_csv('predrisk.csv')
