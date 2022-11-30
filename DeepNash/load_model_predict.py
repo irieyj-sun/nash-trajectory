@@ -133,6 +133,15 @@ m,n,r = pred.shape
 out_arr = np.column_stack((np.repeat(np.arange(m),n),pred.reshape(m*n,-1)))
 out_df = pd.DataFrame(out_arr)
 
-predrisk = pred.iloc[: , 1:]
+out_no_index = out_df.iloc[: , 1:]
 
-predrisk.to_csv('predrisk.csv')
+out_no_index.to_csv('pred_risk.csv')
+
+
+pred_death_risk = out_no_index.iloc[::2, :].reset_index()
+pred_death_risk= pred_death_risk.drop(['index'],axis=1)
+pred_transplant_risk = out_no_index.iloc[1:, :]
+pred_transplant_risk = pred_transplant_risk.iloc[::2, :].reset_index()
+pred_transplant_risk= pred_transplant_risk.drop(['index'],axis=1)
+pred_death_risk.to_csv("pred_risk_death.csv")
+pred_transplant_risk.to_csv("pred_risk_transplant.csv")
