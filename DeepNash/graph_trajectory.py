@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 
-import matplotlib.plt as plt
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 import itertools
 from itertools import cycle
 
@@ -16,6 +17,10 @@ patient_1 = pd.DataFrame({
    'transplant': pred_risk_transplant.iloc[0][0:12],
    'death': pred_risk_death.iloc[0][0:12]
    })
+
+marker2 = itertools.cycle(('o', 's')) 
+lines2 = itertools.cycle(("-","--"))
+
 
 x=range(0,12,1)
 
